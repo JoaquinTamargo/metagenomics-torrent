@@ -1,0 +1,3 @@
+results_directory: /results
+samples_directory: /samples
+metadata_directory:
