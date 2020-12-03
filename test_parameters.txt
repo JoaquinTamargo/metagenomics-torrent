@@ -1,0 +1,10 @@
+## QIIME is an integrative tool that allows all analysis to be performed
+## with regard to the origins of the samples. Thus, a metadata file must
+## be provided. 
+
+## Metadata file must be a txt or csv that contains in each column, the
+## ID of the sample (#SampleID), the BarcodeSequence used for multiplexing,
+## the LinkerPrimerSequence, and other parameters that you may find interesting.
+## Check QIIME documentation for more information.
+
+FASTQ_directory: /
