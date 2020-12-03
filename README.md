@@ -7,6 +7,7 @@ Metagenomics torrent is a straight-forward QIIME pipeline for 16S metabarcoding 
 
 1. [Dependencies](#dependencies)
 2. [Installation and setting up the working environment](#setup)
+3. [How does it work?](#how)
 
 ## Dependencies
 
@@ -32,3 +33,20 @@ There is a script that can make things easy for the installation of the required
 
 <a name="setup"></a>
 
+Installation of the script itself is not neccesary.
+
+Before going through how to work with metagenomics-torrent, let me tell you this pipeline is novice-friendly. Trust me, I'm a novice. 
+
+1. You must create a file wherever you need the results to be. Let's imagine you have different rock samples, and you would like to have the file at the Desktop. You must then open a terminal and go to Desktop. Once there, create a file named, for example, "rocks_analysis".
+2. In that file, create two files: one named "sample_info" and other named "results". In "sample_info", create a file named "sequences"
+3. Copy your fastq (or fastq.gz) samples into "sequences" file (rock_analysis/sample_info/sequences/).
+4. Copy the metadata.txt at "sample_info" file (please do check it is spelt exactly like that). Change it acordingly to your samples.
+5. Copy the parameter_file.txt in "rocks_analysis". That parameter file stores the location of the sequences, the metadata.txt location and the directory where you want your results to be (in our example: rock_analysis/results). Check the location and copy it behind the corresponding parameter. **IMPORTANT:** let a space between the colons and the directory.
+6. Go to the file where you have cloned metagenomics-torrent. In the scripts file, you can find a script to install all the packages needed (dependencies-installation.sh). The other script, *'sequences-processing.sh'*, is the pipeline file.
+7. If you haven't done this before, install all packages by writing "bash dependencies-installation.sh <(Mac/Linux)> (do not include < > symbols).
+8. Write 'bash sequences-processing.sh path/to/parameter/files"
+9. It will for sure take a while. Coffee time! ☕️
+
+## How does it work?
+
+<a name="how"></a>
