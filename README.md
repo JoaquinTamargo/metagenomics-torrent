@@ -5,13 +5,14 @@ Author: Joaquín Tamargo Azpilicueta (joatamazp@alum.us.es)
 
 Metagenomics torrent is a straight-forward QIIME pipeline for 16S metabarcoding analysis sequenced from Ion Torrent platform. Note that this pipeline has been developed by an amateur contributor that may have not taken into account all vicissitudes that can come up. Rather, this pipeline was designed in order to easily process fastq files obtained from an Ion Torrent sequencing platform. 
 
-[pookie](#pookie)
+1. [Dependencies](#dependencies)
+2. [Installation and setting up the working environment](#setup)
 
 ## Dependencies
 
 **Requirements:** 
 
-<a name="pookie"></a>
+<a name="dependencies"></a>
 
 * This pipeline is only available in Linux and Mac OS. If you are working on a Windows machine, you will need a virtual machine such as Virtual box (see how to proceed at https://www.virtualbox.org/). Then you may install Ubuntu in it (https://ubuntu.com/download/desktop). There are plenty of tutorials in YouTube that may come in handy while installing both. 
 
@@ -27,4 +28,7 @@ There is a script that can make things easy for the installation of the required
 
 * Install **FastQC**, **MultiQC**, **Cutadapt** and **BBMap**. There is online documentation available for each of these packages. Note that these packages might be not up-to-date. Please, manually check if versions of these packages are obsolete.
 
-##
+## Installation and setting up the working environment
+
+<a name="setup"></a>
+
