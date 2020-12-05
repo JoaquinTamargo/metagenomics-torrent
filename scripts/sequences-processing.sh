@@ -16,13 +16,15 @@ echo "| Reading parameters |"
 echo "======================"
 echo ""
 
-SAMDIR=$(grep samples_directory: test_parameters.txt | awk '{ print $2 }')
+PARAMS=$1
+
+SAMDIR=$(grep samples_directory $PARAMS | awk '{ print $2 }')
 echo "Sample directory is: ${SAMDIR}"
 
-RESDIR=$(grep results_directory: test_parameters.txt | awk '{ print $2 }')
+RESDIR=$(grep results_directory $PARAMS | awk '{ print $2 }')
 echo "Results will be stored at: ${RESDIR}"
 
-METADATADIR=$(grep metadata_directory: test_parameters.txt | awk '{ print $2 }')
+METADATADIR=$(grep metadata_directory $PARAMS | awk '{ print $2 }')
 echo "Metadata file (double check that it is written as metadata.txt) is stored at ${METADATADIR}"
 
 echo ""
@@ -32,13 +34,12 @@ echo "==============================="
 echo ""
 
 cd ${RESDIR}
-mkdir fastqc_Report
-
+mkdir fastqc_report
 
 cd ${SAMDIR}
 fastqc * -o $RESDIR/fastqc_report -t 8
 
-multiqc $RESDIR/fastqc_report/*.zip -o ../$RESDIR/
+multiqc $RESDIR/fastqc_report/*.zip -o $RESDIR/fastqc_report
 
 echo ""
 echo "Quality control done. Check results at ${RESDIR}."
@@ -50,15 +51,15 @@ echo "==================================="
 echo "| Importing Ion Torrent sequences |"
 echo "==================================="
 echo ""
-echo "Samples (located at ${SAMDIR} are being imported to ${RESDIR}." 
+echo "Samples (located at ${SAMDIR}) are being imported to ${RESDIR} as artifacts (.qza)." 
 echo ""
 
 cd ${RESDIR}
 mkdir Demux
 
 qiime tools import \
---type 'SampleData[SequencesWithQuality]'\
---input-path ${SAMDIR}/ \
+--type 'SampleData[SequencesWithQuality]' \
+--input-path ${METADATADIR}/se-33-manifest \
 --input-format SingleEndFastqManifestPhred33V2 \
 --output-path ${RESDIR}/Demux/single_end_demux.qza
 
@@ -136,7 +137,7 @@ qiime phylogeny midpoint-root \
 
 echo -e "\e[5m================================================="
 echo -e "\e[1m| Alpha and beta diversity is being calculated. |"
-echo -e "\e[5m================================================="
+echo -e "\e[5m=================================================\e[25m"
 echo ""
 
 ## Alpha beta diversity
