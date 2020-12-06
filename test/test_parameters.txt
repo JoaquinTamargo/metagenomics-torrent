@@ -1,3 +1,3 @@
-results_directory: /results
-samples_directory: /samples
-metadata_directory:
+results_directory: path/to/results
+samples_directory: path/to/samples
+metadata_directory: path/to/metadata
