@@ -1,3 +1,0 @@
-results_directory: path/to/results
-samples_directory: path/to/samples
-metadata_directory: path/to/metadata

@@ -137,7 +137,7 @@ qiime phylogeny midpoint-root \
   --o-rooted-tree ${RESDIR}/Phylogenetic-diversity/rooted-tree.qza
 
 echo -e "\e[5m================================================="
-echo -e "\e[1m| Alpha and beta diversity is being calculated. |"
+echo -e "\e[1m| Alpha and beta diversity are being calculated. |"
 echo -e "\e[5m=================================================\e[25m"
 echo ""
 
@@ -166,6 +166,7 @@ qiime diversity core-metrics-phylogenetic \
 echo ""
 echo -e "\e[1mAlpha diversity is being calculated."
 echo ""
+
 qiime diversity alpha-group-significance \
   --i-alpha-diversity ${RESDIR}/Alpha-Beta-diversity/core-metrics-results/faith_pd_vector.qza \
   --m-metadata-file ${METADATADIR}/metadata.txt \
@@ -185,7 +186,7 @@ echo ""
 qiime diversity beta-group-significance \
   --i-distance-matrix ${RESDIR}/Alpha-Beta-diversity/core-metrics-results/unweighted_unifrac_distance_matrix.qza \
   --m-metadata-file ${METADATADIR}/metadata.txt \
-  --m-metadata-category Description \
+  --m-metadata-column Description \
   --o-visualization ${RESDIR}/Alpha-Beta-diversity/core-metrics-results/unweighted-unifrac-description-significance.qzv \
   --p-pairwise
   
@@ -220,19 +221,20 @@ echo ""
 echo "SILVA 16S database was chosen for the analysis, as it is an up-to-date (SILVA v.138, the newest version on 3rd or December, 2020), reliable open source database recommended by many microbiologist experts. The file that is going to be used for the alignment is stored at the Results directory that you have provided in the parameters file (${RESDIR})"
 echo ""
 
-## Creation of SILVA classifier through qiime rescript get-silva-data. 
-## HAY QUE INCLUIRLO EN LA DOCUMENTACION: RESCRIPT
-
-echo "SILVA classifier is created through a qiime script: RESCRIPt. Downloading and processing all sequences may take a while. Please, be patient."
+echo "SILVA trained on Naive-Bayes distribution is being downloaded from QIIME resources database."
+echo ""
+echo -e "\a Naive Bayes classifier trained on ${bold}SILVA 138 99%${normal} from 515F/806R region of sequences"
 echo ""
 
 cd ${RESDIR}
 mkdir SILVA-classifier 
-wget -O "SILVA-classifier/SILVA_138_515F_806R_seqs.qza" "https://data.qiime2.org/2020.8/common/silva-138-99-seqs-515-806.qza"
+wget -O ./SILVA-classifier/classifier.qza "https://data.qiime2.org/2020.8/common/silva-138-99-515-806-nb-classifier.qza"
+
+cd ${RESDIR}
 mkdir Taxonomic-analysis
 
 qiime feature-classifier classify-sklearn \
-  --i-classifier ${RESDIR}/SILVA-classifier/SILVA_138_515F_806R_seqs.qza \
+  --i-classifier ${RESDIR}/SILVA-classifier/classifier.qza \
   --i-reads  ${RESDIR}/Denoised/rep-seqs-dada2.qza \
   --o-classification ${RESDIR}/Taxonomic-analysis/taxonomy.qza \
   --verbose
@@ -243,7 +245,7 @@ echo ""
 
 qiime metadata tabulate \
   --m-input-file ${RESDIR}/Taxonomic-analysis/taxonomy.qza \
-  --o-visualization .${RESDIR}/Taxonomic-analysis/taxonomy.qzv
+  --o-visualization ${RESDIR}/Taxonomic-analysis/taxonomy.qzv
 
 qiime taxa barplot \
   --i-table  ${RESDIR}/Denoised/table-dada2.qza \
