@@ -27,7 +27,7 @@ Once you have `git clone` this repository elsewhere in your computer, there it i
 
 * Install and create a QIIME2 environment acordingly to the operative system you have.
 
-* Install **FastQC**, **MultiQC**, **Cutadapt** and **BBMap**. There is online documentation available for each of these packages. Note that these packages might be not up-to-date. Please, manually check if versions of these packages are obsolete.
+* Install **FastQC**, **MultiQC**, **Cutadapt** and **BBMap**. There is online documentation available for each of these packages. Note that installing these packages with the latter script might result in installing not the latest versions of those. Please, manually check if versions of these packages are obsolete and, if so, modify the script and kindly pull request. 
 
 ## Installation and setting up the working environment
 
