@@ -23,7 +23,7 @@ Metagenomics torrent is a straight-forward QIIME pipeline for 16S metabarcoding 
 
 **Needed applications:**
 
-There is a script that can make things easy for the installation of the required packages: 'dependencies-installation.sh'. Just get into *metagenomics-torrent*  installation directory and type in 'bash scripts/dependencies-installation.sh <Linux/Mac>' and it will:
+Once you have `git clone` this repository elsewhere in your computer, there it is a script that can make things easy for the installation of the required packages: `dependencies-installation.sh`. Just get into *metagenomics-torrent*  installation directory and type in `bash scripts/dependencies-installation.sh <Linux/Mac>` and it will:
 
 * Install and create a QIIME2 environment acordingly to the operative system you have.
 
